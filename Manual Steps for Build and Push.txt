@@ -4,4 +4,4 @@ docker tag vaguecoder/share-price-scraper:1.0.0 vaguecoder/share-price-scraper:l
 docker push vaguecoder/share-price-scraper:1.0.0
 docker push vaguecoder/share-price-scraper:latest
 
-docker run --rm --name=scraper scraper:latest
+docker run -d --rm --name=share-price-scraper -v Shared:/DataStore vaguecoder/share-price-scraper:latest
