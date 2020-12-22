@@ -20,7 +20,7 @@ func writeJSON(collection *Collection) {
 		filename = strings.ReplaceAll(filename, chr, "_")
 	}
 
-	err = ioutil.WriteFile("DataStore/" + filename + ".json", file, 0644)
+	err = ioutil.WriteFile("/datastore/" + filename + ".json", file, 0644)
 	if err != nil {
 		fmt.Printf("\nRecord Failed to Write to JSON File: %+v\n", collection)
 	}
@@ -28,19 +28,19 @@ func writeJSON(collection *Collection) {
 
 func writeStat(flag bool, line string) {
 	if flag {
-		err := ioutil.WriteFile("DataStore/stats.txt", []byte(""), 0644)
+		err := ioutil.WriteFile("/datastore/stats.txt", []byte(""), 0644)
 		if err != nil {
-			fmt.Printf("\nWriter Error: Couldn't Erase File stats.txt")
+			fmt.Printf("\nWriter Error: Couldn't Erase File /datastore/stats.txt")
 		}
 	}
 
-	file, err := os.OpenFile("DataStore/stats.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	file, err := os.OpenFile("/datastore/stats.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
-		fmt.Printf("\nOS Error: File stats.txt Creation Failed\n")
+		fmt.Printf("\nOS Error: File /datastore/stats.txt Creation Failed\n")
 	}
 	defer file.Close()
 
 	if _, err := file.WriteString(line); err != nil {
-		fmt.Printf("\nWriter Error: Writing on File stats.txt Failed. Context: %d\n", line)
+		fmt.Printf("\nWriter Error: Writing on File /datastore/stats.txt Failed. Context: %s\n", line)
 	}
 }
